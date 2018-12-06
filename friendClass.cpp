@@ -4,19 +4,19 @@
 
 using namespace std;
 
-class child; //заранее объявляем класс, который станет дружественным
+class child; //Г§Г Г°Г Г­ГҐГҐ Г®ГЎГєГїГўГ«ГїГҐГ¬ ГЄГ«Г Г±Г±, ГЄГ®ГІГ®Г°Г»Г© Г±ГІГ Г­ГҐГІ Г¤Г°ГіГ¦ГҐГ±ГІГўГҐГ­Г­Г»Г¬
 
-class schoolchild //определяем следующий класс
+class schoolchild //Г®ГЇГ°ГҐГ¤ГҐГ«ГїГҐГ¬ Г±Г«ГҐГ¤ГіГѕГ№ГЁГ© ГЄГ«Г Г±Г±
 {
     char name[16];
     char surname[16];
     int group;
 public:
-    schoolchild (char*, char*, int);//конструктор
+    schoolchild (char*, char*, int);//ГЄГ®Г­Г±ГІГ°ГіГЄГІГ®Г°
     void getData();
-    friend child;//указываем, что класс дружественный
+    friend child;//ГіГЄГ Г§Г»ГўГ ГҐГ¬, Г·ГІГ® ГЄГ«Г Г±Г± Г¤Г°ГіГ¦ГҐГ±ГІГўГҐГ­Г­Г»Г©
 };
-// определяем методы класса schoolchild
+// Г®ГЇГ°ГҐГ¤ГҐГ«ГїГҐГ¬ Г¬ГҐГІГ®Г¤Г» ГЄГ«Г Г±Г±Г  schoolchild
 schoolchild::schoolchild(char *n, char *s, int c)
 {
     strcpy(name, n);
@@ -26,54 +26,56 @@ schoolchild::schoolchild(char *n, char *s, int c)
 
 void schoolchild::getData()
 {
-    cout << name << " " << surname << "\t" << group << "-й курс"<< endl;
+    cout << name << " " << surname << "\t" << group << "-Г© ГЄГіГ°Г±"<< endl;
 }
 
-class child //определяем дружественный класс
+class child //Г®ГЇГ°ГҐГ¤ГҐГ«ГїГҐГ¬ Г¤Г°ГіГ¦ГҐГ±ГІГўГҐГ­Г­Г»Г© ГЄГ«Г Г±Г±
 {
 public:
     void changeClas(schoolchild &, int );
     void getChangeData(schoolchild);
 };
-// определяем методы класса child
-void child::changeClas(schoolchild &obj, int newCl) //передаем объект класса и вносим изменения в int clas
+// 
+void child::changeClas(schoolchild &obj, int newCl) //ГЇГҐГ°ГҐГ¤Г ГҐГ¬ Г®ГЎГєГҐГЄГІ ГЄГ«Г Г±Г±Г  ГЁ ГўГ­Г®Г±ГЁГ¬ ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГї Гў int clas
 {
     obj.group = newCl;
 }
 
 void child::getChangeData(schoolchild obj)
 {
-    cout << obj.name << "  " << obj.surname << "\t переведен(а)  на " << obj.group << "-й курс\n";
+    cout << obj.name << "  " << obj.surname << "\t ГЇГҐГ°ГҐГўГҐГ¤ГҐГ­(Г )  Г­Г  " << obj.group << "-Г© ГЄГіГ°Г±\n";
 }
 
 int main()
 {
     system("chcp 1251 >nul");
 
-    //создаем объекты класса schoolchild
-    schoolchild vudych  ( "Марта", "Вудич", 3);
-    schoolchild klusyk  ( "Олександр", "Клюсик", 3);
-    schoolchild ivanov  ( "Петро", "Іванов", 3);
+    //
+    schoolchild vudych  ( "ГЊГ Г°ГІГ ", "Г‚ГіГ¤ГЁГ·", 3);
+    schoolchild klusyk  ( "ГЋГ«ГҐГЄГ±Г Г­Г¤Г°", "ГЉГ«ГѕГ±ГЁГЄ", 3);
+    schoolchild ivanov  ( "ГЏГҐГІГ°Г®", "ВІГўГ Г­Г®Гў", 3);
 
-    cout << "Список студентів 3-го курсу:\n";
+    cout << "Г‘ГЇГЁГ±Г®ГЄ Г±ГІГіГ¤ГҐГ­ГІВіГў 3-ГЈГ® ГЄГіГ°Г±Гі:\n";
     vudych.getData();
     klusyk.getData();
     ivanov.getData();
 
-    child transfer; //создаем объект transfer - перевод в с следующий класс
+    child transfer; //Г±Г®Г§Г¤Г ГҐГ¬ Г®ГЎГєГҐГЄГІ transfer - ГЇГҐГ°ГҐГўГ®Г¤ Гў Г± Г±Г«ГҐГ¤ГіГѕГ№ГЁГ© ГЄГ«Г Г±Г±
 
     transfer.changeClas(vudych, 4);
     transfer.changeClas(klusyk, 4);
 
-    cout << "\nПереведен на наступний курс:\n";
+    cout << "\nГЏГҐГ°ГҐГўГҐГ¤ГҐГ­ Г­Г  Г­Г Г±ГІГіГЇГ­ГЁГ© ГЄГіГ°Г±:\n";
     transfer.getChangeData(vudych);
     transfer.getChangeData(klusyk);
 
-    cout << "\nСписок студентів 4-го курсу:\n";
+    cout << "\nГ‘ГЇГЁГ±Г®ГЄ Г±ГІГіГ¤ГҐГ­ГІВіГў 4-ГЈГ® ГЄГіГ°Г±Гі:\n";
     vudych.getData();
     klusyk.getData();
 
-    cout << "\nСписок студентів 3-го курсу:\n";
+    cout << "\nГ‘ГЇГЁГ±Г®ГЄ Г±ГІГіГ¤ГҐГ­ГІВіГў 3-ГЈГ® ГЄГіГ°Г±Гі:\n";
+    
+    cout << "add for github" << endl;
     ivanov.getData();
 
 return 0;
